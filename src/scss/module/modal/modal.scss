@@ -1,0 +1,106 @@
+@use "../../config/default";
+@use "../../config/initial-variables" as v;
+@use "../../config/responsiveness" as r;
+
+.tr__modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  overflow-y: auto;
+  background-color: v.$overlay;
+  opacity: 0;
+  visibility: hidden;
+  transition-property: opacity, visibility;
+  transition-duration: v.$speed-long;
+  transition-timing-function: v.$easing;
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+    .tr__modal--window {
+      transform: none;
+    }
+  }
+  &--window {
+    position: relative;
+    width: 468px;
+    max-width: 100%;
+    margin: auto;
+    padding: 60px;
+    background-color: v.$white;
+    transform: translateY(24px);
+    transition: transform v.$speed-long v.$easing;
+    @include r.mobile {
+      padding: 48px 24px 32px;
+    }
+  }
+  &--close {
+    position: absolute;
+    top: 30px;
+    right: 31px;
+    width: 40px;
+    height: 40px;
+    color: v.$text-soft;
+    @include r.mobile {
+      top: 8px;
+      right: 8px;
+    }
+    .icon {
+      width: 12px;
+      height: 12px;
+    }
+  }
+  // в макете текст центрирован по самой длинной строке, а не по окну
+  &--head {
+    width: max-content;
+    max-width: 100%;
+    margin-bottom: 19px;
+    text-align: center;
+  }
+  &--title {
+    font-size: 30px;
+    font-weight: v.$weight-bold;
+    line-height: 1.2;
+    color: v.$dark;
+    @include r.mobile {
+      font-size: 26px;
+    }
+  }
+  &--text {
+    margin-top: 11px;
+    font-family: v.$font-family-text;
+    font-size: 16px;
+    font-weight: v.$weight-light;
+    line-height: 22px;
+    color: v.$text-soft;
+    @include r.mobile {
+      font-size: 15px;
+      line-height: 20px;
+      br {
+        display: none;
+      }
+    }
+  }
+  &--success {
+    display: none;
+    text-align: center;
+    &.is-visible {
+      display: block;
+    }
+    .tr__modal--title {
+      margin-bottom: 12px;
+    }
+    .tr__modal--text {
+      margin-bottom: 24px;
+    }
+  }
+  &.is-sent {
+    .tr__modal--head,
+    .tr__form {
+      display: none;
+    }
+  }
+}

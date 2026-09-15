@@ -1,0 +1,24 @@
+//- br скрывается на мобильных, пробелы вокруг него нужны
+#callback.tr__modal.js--modal(role="dialog" aria-modal="true" aria-labelledby="CallbackTitle" aria-hidden="true" tabindex="-1")
+    .tr__modal--window
+        button(type="button" aria-label="Закрыть окно").tr__icon-button.tr__modal--close.js--modal-close
+            +ico('close')
+        .tr__modal--head
+            h2#CallbackTitle.tr__modal--title Заявка на звонок
+            p.tr__modal--text Наши менеджеры свяжутся с Вами в ближайшее #[br] время и ответят на ваши вопросы!
+        form(action="#" method="post" novalidate).tr__form.js--form
+            .tr__form--field
+                label.tr__form--label(for="CallbackName") Ваше имя
+                input#CallbackName(type="text" name="name" placeholder="Введите Ваше имя*" autocomplete="name" required minlength="2" maxlength="50" aria-describedby="CallbackNameError" data-validate="name").tr__form--input
+                span#CallbackNameError.tr__form--error(aria-live="polite")
+            .tr__form--field
+                label.tr__form--label(for="CallbackPhone") Ваш телефон
+                input#CallbackPhone(type="tel" name="phone" placeholder="Введите Ваш телефон*" autocomplete="tel" inputmode="tel" required maxlength="18" aria-describedby="CallbackPhoneError" data-validate="phone" data-mask="phone").tr__form--input
+                span#CallbackPhoneError.tr__form--error(aria-live="polite")
+            p.tr__form--note * Отправляя заявку вы соглашаетесь #[br] с #[a(href="#" title="Политика конфиденциальности") политикой конфиденциальности]
+            button(type="submit").tr__button.tr__form--submit Отправить заявку
+            p.tr__form--status(aria-live="polite")
+        .tr__modal--success.js--form-success
+            h2.tr__modal--title Заявка отправлена
+            p.tr__modal--text Спасибо! Мы перезвоним вам #[br] в ближайшее время.
+            button(type="button").tr__button.js--modal-close Закрыть

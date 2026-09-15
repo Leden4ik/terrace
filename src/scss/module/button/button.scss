@@ -1,0 +1,70 @@
+@use "../../config/default";
+@use "../../config/initial-variables" as v;
+@use "../../config/responsiveness" as r;
+
+.tr__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 45px;
+  padding: 0 27px;
+  border-radius: 0;
+  background-color: v.$red;
+  color: v.$white;
+  font-size: 16px;
+  font-weight: v.$weight-semibold;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  @include default.unselectable;
+  transition-property: background-color, color, box-shadow, transform, opacity;
+  transition-duration: v.$speed-long;
+  transition-timing-function: v.$easing;
+  &:hover,
+  &:focus-visible {
+    background-color: v.$red-dark;
+    box-shadow: 0 6px 16px rgba(v.$red, 0.3);
+  }
+  &:focus-visible {
+    outline: 2px solid v.$dark;
+    outline-offset: 2px;
+  }
+  &:active {
+    transform: translateY(1px);
+  }
+  &:disabled,
+  &.is-loading {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  &--full {
+    width: 100%;
+  }
+}
+
+.tr__icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  color: v.$dark;
+  transition-property: color, opacity, transform;
+  transition-duration: v.$speed-long;
+  transition-timing-function: v.$easing;
+  &:hover,
+  &:focus-visible {
+    color: v.$red;
+  }
+  &:focus-visible {
+    outline: 2px solid v.$red;
+    outline-offset: 2px;
+  }
+  &:disabled,
+  &.is-disabled {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+}

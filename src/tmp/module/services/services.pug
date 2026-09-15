@@ -1,0 +1,25 @@
+section#services.tr__services
+    .container
+        .tr__services--head
+            h2.tr__section--title Что мы можем сделать для вас
+            .tr__services--head-arrows
+                button(type="button" aria-label="Предыдущие услуги").tr__icon-button.js--services-prev
+                    +ico('arrow-left')
+                button(type="button" aria-label="Следующие услуги").tr__icon-button.js--services-next
+                    +ico('arrow-right')
+        .tr__services--slider.js--services
+            ul.tr__services--track.js--services-track(role="list" aria-label="Услуги")
+                each item in services
+                    li.tr__services--item
+                        a(href="#" title=item.title.replace('\n', ' ')).tr__services--card
+                            .tr__services--photo
+                                img(src=item.img alt=item.alt width="360" height="370" loading="lazy" decoding="async")
+                            span.tr__services--label
+                                each line, i in item.title.split('\n')
+                                    if i > 0
+                                        br
+                                    | #{line}
+            button(type="button" aria-label="Предыдущие услуги").tr__icon-button.tr__services--arrow.tr__services--arrow-prev.js--services-prev
+                +ico('arrow-left')
+            button(type="button" aria-label="Следующие услуги").tr__icon-button.tr__services--arrow.tr__services--arrow-next.js--services-next
+                +ico('arrow-right')

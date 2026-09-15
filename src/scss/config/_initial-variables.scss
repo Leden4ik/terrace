@@ -1,0 +1,43 @@
+$red: #c3002f !default;
+$red-dark: #a10027 !default;
+$dark: #151414 !default;
+$text: #151414 !default;
+$text-soft: #4a4a4a !default;
+$placeholder: #a4a4a4 !default;
+$footer-muted: #a0a0a0 !default;
+$footer-text: #dcdcdc !default;
+$border: #4a4a4a !default;
+$border-light: #e6e6e6 !default;
+$bg: #ffffff !default;
+$white: #fff !default;
+$overlay: rgba(21, 20, 20, 0.7) !default;
+
+$black: hsl(0, 0%, 4%) !default;
+$grey: hsl(0, 0%, 48%) !default;
+$grey-light: hsl(0, 0%, 71%) !default;
+$grey-lighter: hsl(0, 0%, 86%) !default;
+
+$font-family: "FiraSansCondensed", "Fira Sans Condensed", "Fira Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
+$font-size: 16px !default;
+$font-family-text: "Jost", "Jost*", "Futura", "Century Gothic", system-ui, sans-serif !default;
+$weight-light: 300 !default;
+$weight-normal: 400 !default;
+$weight-medium: 500 !default;
+$weight-semibold: 600 !default;
+$weight-bold: 700 !default;
+
+$easing: ease-out !default;
+$speed: 86ms !default;
+$speed-long: 300ms !default;
+$radius-rounded: 290486px !default;
+
+$container: 1532px !default;
+$gutter: 48px !default;
+$gutter-tablet: 24px !default;
+$gutter-mobile: 16px !default;
+
+$col: 362px !default;
+$col-gap: 28px !default;
+
+$layout-full: $container + $gutter * 2 !default;
+$layout-arrows: $container + ($gutter + 68px) * 2 !default;

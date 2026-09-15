@@ -1,0 +1,40 @@
+footer#contacts.tr__footer
+    .container
+        .tr__footer--grid
+            .tr__footer--col
+                h2.tr__footer--title Реквизиты
+                ul.tr__footer--list(role="list")
+                    li= footer.requisites.inn
+                    li= footer.requisites.ogrn
+                p.tr__footer--copyright= footer.requisites.copyright
+                a(href="#" title="Политика конфиденциальности").tr__footer--policy Политика конфиденциальности
+            .tr__footer--col
+                h2.tr__footer--title Каталог
+                nav(aria-label="Каталог")
+                    ul.tr__footer--list(role="list")
+                        each item in footer.catalog
+                            li
+                                a(href="#" title=item).tr__footer--link= item
+            .tr__footer--col
+                h2.tr__footer--title Услуги
+                nav(aria-label="Услуги")
+                    ul.tr__footer--list(role="list")
+                        each item in footer.services
+                            li
+                                a(href="#" title=item).tr__footer--link= item
+            .tr__footer--col
+                h2.tr__footer--title Контакты
+                address.tr__footer--contacts
+                    ul.tr__footer--list(role="list")
+                        li= footer.contacts.address
+                        each phone in footer.contacts.phones
+                            li
+                                a(href=phone.href title="Позвонить").tr__footer--link= phone.label
+                        li
+                            a(href=`mailto:${site.email}` title="Написать письмо").tr__footer--link= site.email
+                        li= footer.contacts.hours
+                ul.tr__footer--social(role="list")
+                    each item in footer.social
+                        li
+                            a(href=item.url title=item.name aria-label=item.name target="_blank" rel="noopener").tr__footer--social-link
+                                +ico(item.icon)

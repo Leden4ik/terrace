@@ -1,0 +1,11 @@
+mixin ico(name, cls)
+    svg(class=`icon icon-${name}${cls ? ' ' + cls : ''}` aria-hidden="true" focusable="false")
+        use(href=`img/icons/sprite.svg#${name}`)
+
+mixin logo(cls)
+    a(href="/" class=`tr__logo${cls ? ' ' + cls : ''}` title="Terrace, на главную" aria-label="Terrace, на главную")
+        +ico('logo')
+        span.tr__logo--text Terrace
+
+mixin modalButton(label, target, cls)
+    button(type="button" class=`tr__button${cls ? ' ' + cls : ''}` data-modal-open=target aria-haspopup="dialog")= label

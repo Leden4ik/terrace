@@ -1,0 +1,165 @@
+@use "../../config/default";
+@use "../../config/initial-variables" as v;
+@use "../../config/responsiveness" as r;
+
+.tr__services {
+  padding: 99px 0 100px;
+  @include r.touch {
+    padding: 64px 0;
+  }
+  @include r.mobile {
+    padding: 48px 0;
+  }
+  &--head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 36px;
+    @include r.mobile {
+      margin-bottom: 24px;
+    }
+  }
+  // на планшете и телефоне стрелки у заголовка
+  &--head-arrows {
+    display: none;
+    gap: 8px;
+    margin-right: -12px;
+    @include r.touch {
+      display: flex;
+    }
+  }
+  &--slider {
+    position: relative;
+  }
+  &--track {
+    display: flex;
+    gap: v.$col-gap;
+    padding: 0 0 30px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overscroll-behavior-x: contain;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    &.is-dragging {
+      scroll-snap-type: none;
+      scroll-behavior: auto;
+      cursor: grabbing;
+      user-select: none;
+    }
+    @include r.touch {
+      margin: 0 (-(v.$gutter-tablet));
+      padding: 0 v.$gutter-tablet 30px;
+      scroll-padding: 0 v.$gutter-tablet;
+    }
+    @include r.mobile {
+      margin: 0 (-(v.$gutter-mobile));
+      padding: 0 v.$gutter-mobile 30px;
+      scroll-padding: 0 v.$gutter-mobile;
+    }
+  }
+  &--item {
+    flex: 0 0 auto;
+    width: calc((100% - #{v.$col-gap * 3}) / 4);
+    scroll-snap-align: start;
+    @include r.until(1216px) {
+      width: calc((100% - #{v.$col-gap * 2}) / 3);
+    }
+    @include r.touch {
+      width: calc((100% - #{v.$col-gap}) / 2);
+    }
+    @include r.until-mobile {
+      width: 100%;
+    }
+  }
+  &--card {
+    position: relative;
+    display: block;
+    color: v.$white;
+    &:focus-visible {
+      outline: 2px solid v.$red;
+      outline-offset: 4px;
+    }
+    &:hover,
+    &:focus-visible {
+      .tr__services--photo img {
+        transform: scale(1.04);
+      }
+      .tr__services--label {
+        background-color: v.$red-dark;
+      }
+    }
+  }
+  &--photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 362 / 370;
+    overflow: hidden;
+    background-color: v.$grey-lighter;
+    picture,
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    img {
+      object-fit: cover;
+      transition: transform 0.6s v.$easing;
+    }
+  }
+  &--label {
+    position: absolute;
+    left: 50%;
+    bottom: -30px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 225px;
+    max-width: calc(100% - 32px);
+    min-height: 84px;
+    padding: 8px 16px;
+    background-color: v.$red;
+    font-size: 18px;
+    font-weight: v.$weight-bold;
+    line-height: 1.2;
+    text-align: center;
+    text-wrap: balance;
+    transform: translateX(-50%);
+    transition: background-color v.$speed-long v.$easing;
+  }
+  &--slider &--arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    transform: translateY(-50%);
+    display: none;
+    @include r.desktop {
+      display: inline-flex;
+    }
+    .icon {
+      width: 32px;
+      height: 16px;
+    }
+    // снаружи контейнера, если есть место, иначе в его поле
+    &-prev {
+      left: -(v.$gutter);
+      @include r.from(v.$layout-arrows) {
+        left: -68px;
+      }
+    }
+    &-next {
+      right: -(v.$gutter);
+      @include r.from(v.$layout-arrows) {
+        right: -68px;
+      }
+    }
+  }
+  &--head-arrows .tr__icon-button .icon {
+    width: 32px;
+    height: 16px;
+  }
+}

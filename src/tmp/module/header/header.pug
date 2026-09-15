@@ -1,0 +1,33 @@
+header.tr__header
+  .container
+    .tr__header--block
+      +logo('tr__header--logo')
+      nav.tr__header--nav(aria-label="Основное меню")
+        ul.tr__header--nav-list(role="list")
+          each item in nav
+            li.tr__header--nav-item
+              a(href=item.url title=item.label).tr__header--nav-link= item.label
+      .tr__header--contacts
+        a(href=site.phoneHref title="Позвонить").tr__header--phone
+          +ico('phone')
+          span= site.phone
+        +modalButton('Заказать звонок', 'callback', 'tr__header--button')
+      button(type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="MobileMenu").tr__icon-button.tr__header--burger.js--burger
+        +ico('burger')
+
+  .tr__header--backdrop.js--drawer-backdrop
+  #MobileMenu.tr__header--drawer.js--drawer(aria-hidden="true")
+    .tr__header--drawer-head
+      +logo()
+      button(type="button" aria-label="Закрыть меню").tr__icon-button.tr__header--drawer-close.js--drawer-close
+        +ico('close')
+    nav(aria-label="Мобильное меню")
+      ul.tr__header--drawer-list(role="list")
+        each item in nav
+          li
+            a(href=item.url title=item.label).tr__header--drawer-link.js--drawer-link= item.label
+    .tr__header--drawer-bottom
+      a(href=site.phoneHref title="Позвонить").tr__header--phone
+        +ico('phone')
+        span= site.phone
+      +modalButton('Заказать звонок', 'callback')

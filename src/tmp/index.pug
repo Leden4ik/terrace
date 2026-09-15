@@ -1,0 +1,22 @@
+extends layout/default
+include _config/helper
+block variables
+  include _config/data
+  -  const pageTitle = 'Terrace: европейская терраса для вашего дома'
+  -  const pageDescription = 'Террасная композитная доска в Москве: монтаж декинга, фасадные и проектные работы, строительство и благоустройство'
+  -  const pageClass = 'page-home'
+
+block header
+    include module/header/header
+block footer
+    include module/footer/footer
+block modals
+    include module/modal/callback
+block scripts
+    include module/js
+    block page_scripts
+
+block content
+    main.tr__main
+        include module/hero/hero
+        include module/services/services

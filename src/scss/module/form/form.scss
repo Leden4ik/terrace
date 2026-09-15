@@ -1,0 +1,108 @@
+@use "../../config/default";
+@use "../../config/initial-variables" as v;
+@use "../../config/responsiveness" as r;
+
+.tr__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: v.$font-family-text;
+  font-weight: v.$weight-light;
+  &--field {
+    position: relative;
+    & + & {
+      margin-top: 15px;
+    }
+  }
+  &--label {
+    // визуально скрыт, подписи в макете нет
+    position: absolute !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    white-space: nowrap !important;
+  }
+  &--input {
+    display: block;
+    width: 100%;
+    height: 44px;
+    padding: 0 16px;
+    border: 1px solid v.$border;
+    background-color: v.$white;
+    font-size: 16px;
+    line-height: 1.2;
+    color: v.$dark;
+    transition-property: border-color, box-shadow;
+    transition-duration: v.$speed-long;
+    transition-timing-function: v.$easing;
+    &::placeholder {
+      color: v.$placeholder;
+      opacity: 1;
+    }
+    &:focus {
+      outline: none;
+      border-color: v.$dark;
+      box-shadow: inset 0 0 0 1px v.$dark;
+    }
+    &.is-error,
+    &[aria-invalid="true"] {
+      border-color: v.$red;
+      &:focus {
+        box-shadow: inset 0 0 0 1px v.$red;
+      }
+    }
+    &.is-valid {
+      border-color: #2e8b57;
+    }
+  }
+  &--error {
+    display: none;
+    margin-top: 4px;
+    font-size: 13px;
+    line-height: 1.3;
+    color: v.$red;
+    &.is-visible {
+      display: block;
+    }
+  }
+  &--note {
+    margin-top: 16px;
+    font-size: 16px;
+    line-height: 22px;
+    color: v.$text-soft;
+    @include r.mobile {
+      font-size: 15px;
+      line-height: 20px;
+    }
+    a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color v.$speed-long v.$easing;
+      &:hover,
+      &:focus-visible {
+        color: v.$red;
+      }
+    }
+  }
+  &--submit {
+    align-self: center;
+    margin-top: 14px;
+    font-family: v.$font-family;
+    font-weight: v.$weight-semibold;
+  }
+  &--status {
+    display: none;
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.3;
+    text-align: center;
+    color: v.$red;
+    &.is-visible {
+      display: block;
+    }
+  }
+}

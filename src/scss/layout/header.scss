@@ -1,0 +1,188 @@
+@use "../config/default";
+@use "../config/initial-variables" as v;
+@use "../config/responsiveness" as r;
+
+.tr__header {
+  position: relative;
+  z-index: 10;
+  background-color: v.$bg;
+  &--block {
+    display: flex;
+    align-items: center;
+    height: 104px;
+    @include r.touch {
+      height: 80px;
+    }
+    @include r.mobile {
+      height: 64px;
+    }
+  }
+  &--logo {
+    flex-shrink: 0;
+  }
+  &--nav {
+    margin: 0 auto;
+    @include r.from(v.$layout-full) {
+      margin-left: 259px;
+    }
+    @include r.until(1280px) {
+      display: none;
+    }
+    &-list {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      @include r.until(1440px) {
+        gap: 32px;
+      }
+    }
+    &-link {
+      display: block;
+      padding: 4px 0;
+      font-size: 18px;
+      line-height: 1.2;
+      color: v.$dark;
+      white-space: nowrap;
+      transition: color v.$speed-long v.$easing;
+      @include default.hover-link;
+      &::before {
+        height: 2px;
+        background-color: v.$red;
+      }
+      &:hover,
+      &:focus-visible {
+        color: v.$red;
+      }
+    }
+  }
+  &--contacts {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin-left: 24px;
+    @include r.until(1280px) {
+      margin-left: auto;
+    }
+    @include r.mobile {
+      display: none;
+    }
+  }
+  &--phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 18px;
+    line-height: 1.2;
+    color: v.$dark;
+    white-space: nowrap;
+    transition: color v.$speed-long v.$easing;
+    .icon {
+      width: 18px;
+      height: 18px;
+    }
+    &:hover,
+    &:focus-visible {
+      color: v.$red;
+    }
+    @include r.until(1024px) {
+      display: none;
+    }
+  }
+  // перебиваем display у .tr__icon-button
+  &--block &--burger {
+    display: none;
+    margin-left: auto;
+    color: v.$dark;
+    @include r.mobile {
+      display: inline-flex;
+    }
+    .icon {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  &--drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    width: min(360px, 100%);
+    padding: 24px 24px 32px;
+    background-color: v.$bg;
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.18);
+    transform: translateX(100%);
+    visibility: hidden;
+    transition-property: transform, visibility;
+    transition-duration: v.$speed-long;
+    transition-timing-function: v.$easing;
+    &.is-open {
+      transform: none;
+      visibility: visible;
+    }
+    &-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    &-close {
+      width: 40px;
+      height: 40px;
+      .icon {
+        width: 16px;
+        height: 16px;
+      }
+    }
+    &-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    &-link {
+      display: block;
+      padding: 10px 0;
+      font-size: 22px;
+      font-weight: v.$weight-medium;
+      color: v.$dark;
+      border-bottom: 1px solid v.$border-light;
+      transition: color v.$speed-long v.$easing;
+      &:hover,
+      &:focus-visible {
+        color: v.$red;
+      }
+    }
+    &-bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+      margin-top: auto;
+      padding-top: 32px;
+      .tr__header--phone {
+        display: inline-flex;
+      }
+      .tr__button {
+        width: 100%;
+      }
+    }
+  }
+  &--backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    background-color: v.$overlay;
+    opacity: 0;
+    visibility: hidden;
+    transition-property: opacity, visibility;
+    transition-duration: v.$speed-long;
+    transition-timing-function: v.$easing;
+    &.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

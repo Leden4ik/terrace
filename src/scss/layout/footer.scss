@@ -1,0 +1,100 @@
+@use "../config/default";
+@use "../config/initial-variables" as v;
+@use "../config/responsiveness" as r;
+
+.tr__footer {
+  background-color: v.$dark;
+  color: v.$footer-text;
+  &--grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px v.$col-gap;
+    padding: 51px 0 50px;
+    @include r.touch {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding: 40px 0;
+    }
+    @include r.until-mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+  &--col {
+    min-width: 0;
+  }
+  &--title {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: v.$weight-normal;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: v.$footer-muted;
+  }
+  &--list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: v.$font-family-text;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+  &--link {
+    display: inline-block;
+    color: v.$footer-text;
+    transition: color v.$speed-long v.$easing;
+    &:hover,
+    &:focus-visible {
+      color: v.$white;
+    }
+  }
+  &--copyright {
+    margin-top: 20px;
+    font-family: v.$font-family-text;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+  &--policy {
+    display: inline-block;
+    margin-top: 10px;
+    font-family: v.$font-family-text;
+    font-size: 14px;
+    line-height: 1.2;
+    color: v.$footer-text;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color v.$speed-long v.$easing;
+    &:hover,
+    &:focus-visible {
+      color: v.$white;
+    }
+  }
+  &--contacts {
+    font-style: normal;
+  }
+  &--social {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    &-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      background-color: v.$white;
+      color: v.$dark;
+      transition-property: background-color, color, transform;
+      transition-duration: v.$speed-long;
+      transition-timing-function: v.$easing;
+      .icon {
+        width: 14px;
+        height: 14px;
+      }
+      &:hover,
+      &:focus-visible {
+        background-color: v.$red;
+        color: v.$white;
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
