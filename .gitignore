@@ -1,0 +1,12 @@
+.vscode
+.idea
+dist
+node_modules
+old
+old_back
+*.zip
+*.php
+src/.temporary_cache
+src/_no
+_design
+package-lock.json
